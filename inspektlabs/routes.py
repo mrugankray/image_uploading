@@ -60,7 +60,7 @@ def token_required(f):
 
 
 @app.route('/upload', methods=['POST'])
-@limiter.limit("10 per minute")
+@limiter.limit("5 per minute")
 @token_required
 def upload(user):
     file = request.files['file']
@@ -75,7 +75,7 @@ def upload(user):
     return make_response(jsonify({'msg': f'{filename}'}), 200)
 
 @app.route('/loadimage', methods=['GET'])
-@limiter.limit("10 per minute")
+@limiter.limit("5 per minute")
 @token_required
 def load_image(user):
     return make_response(jsonify({'msg': f'{user.image}'}), 200)
