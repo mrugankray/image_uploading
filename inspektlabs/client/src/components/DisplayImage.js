@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import './displayImage.css'
 
 function DisplayImage({loadImage, imguri}) {
-    const imgURI = 'http://127.0.0.1:5000/static/images/'+`${imguri}`
+    const imgURI = 'http://mrugankray3.pythonanywhere.com/static/images/'+`${imguri}`
     return (
         <Fragment>
             <main>
