@@ -72,5 +72,11 @@ def upload(user):
     user.image = filename
     db.session.commit()
 
-    return make_response(jsonify({'msg': 'Image saved'}), 200)
+    return make_response(jsonify({'msg': f'{filename}'}), 200)
+
+@app.route('/loadimage', methods=['GET'])
+@limiter.limit("10 per minute")
+@token_required
+def load_image(user):
+    return make_response(jsonify({'msg': f'{user.image}'}), 200)
 
