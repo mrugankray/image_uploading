@@ -31,8 +31,11 @@ def login():
         email = req['email']
         password = req['password']
         user = User.query.filter_by(email=email).first()
-        if bcrypt.check_password_hash(user.password, password):
-            token = user.create_token()
+        if(user):
+            if bcrypt.check_password_hash(user.password, password):
+                token = user.create_token()
+            else:
+                return make_response(jsonify({'msg': 'Invalid Credentials'}), 401)
         else:
             return make_response(jsonify({'msg': 'Invalid Credentials'}), 401)
         return make_response(jsonify({'msg': token}), 200)
