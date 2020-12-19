@@ -6,7 +6,7 @@ import os
 
 
 @app.route('/register', methods=['POST'])
-@limiter.exempt
+@limiter.limit("5 per minute")
 def register():
     req = request.get_json()
     try:
@@ -24,7 +24,7 @@ def register():
 
 
 @app.route('/login', methods=['POST'])
-@limiter.exempt
+@limiter.limit("5 per minute")
 def login():
     req = request.get_json()
     try:
